@@ -3,26 +3,30 @@
     <div id="container">
       <label for="fname">{{ nameInput }}</label><br>
       <div id="styleInput">
-        <input v-model="username" :placeholder="placeholder" :type="type"  >
+        <input v-model="passs" :placeholder="placeholder" :type="type"  >
+        <div id="check">
+          <p  v-on:click="type==='password'? type='text':type='password'">{{type=="password"? "o.o":"-.-"}}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'textInput',
+  name: 'textPassword',
   props: {
     nameInput: String,
     placeholder : String,
-    type: String
-    
-  },
-  methods:{
-    check(){
+    },
+  data(){
+    return{
+       type :"password",
     }
   },
+  methods:{
+  },
   computed:{
-    username:{
+    passs:{
       get() {
         return this.value;
       },
@@ -50,10 +54,17 @@ export default {
 }
 #styleInput{
   border: 0.1px outset gray;
-  background-color: white;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  background-color: turquoise;
+}
+#check{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 input{
-  width: 98%;
   height: 30px;
   display:block;
   border: none;

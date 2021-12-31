@@ -1,53 +1,50 @@
 <template>
   <div id="app">
-    <header id="header">
-    <h1>Login</h1>
-    </header>
-
     <article id="article">
-
-      <div id="image" >
-        <img  src="https://storage.googleapis.com/cdn.nhanh.vn/store/3379/ps/20190410/zzzgst006_800x800.jpg">
-      </div>
-      <div id="columnInput">
-
         <div id="containerInput"> 
-          <TextInput id="textInput" v-model="name" nameInput="UserName" placeholder="UserName" type="Email" />
+          <h1>Login </h1>
+          <br/>
+          <TextInput id="textInput" v-model="name" nameInput="UserName" placeholder="UserName" type="email" />
           <br>
-          <TextInput id="textInput" v-model="pass" nameInput="Password" placeholder="Password" type="Password"  />
+          <PasswordInput id="textInput" v-model="pass" nameInput="Password" placeholder="Password" type="password"/>
           <br>
-          <button v-on:click="getText(name,pass)">Login</button>
+          <button @click="getText(name,pass)">Login</button>
+
+          <!-- <button v-on:click="handleClick($event)">click</button> -->
         </div>
-
-      </div>
-
     </article>
-    <div id="footer"> 
-    <p>SDT: 12035888888</p>
-    </div>
   </div>
 </template>
-
 <script>
 import TextInput from './components/TextInput.vue'
+import PasswordInput from './components/TextPassword.vue'
 export default {
   name: 'App',
   components: {
-    TextInput
+    TextInput,
+    PasswordInput
   },
   data(){
-        return {
+      return {
       label: 'Username',
       name: null,
       pass: null,
+      src: "https://storage.googleapis.com/cdn.nhanh.vn/store/3379/ps/20190410/zzzgst006_800x800.jpg",
+      number: 100000,
     };
   },
   methods:{
     getText(name,pass){
       alert("text: "+name + "\npass: "+pass)
+    },
+    money(){
+      var numbers = this.number
+      return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND' }).format(numbers)
+    },
+    handleClick(e){
+        console.log("click"+e.target);
     }
   }
-
 }
 </script>
 
@@ -61,57 +58,31 @@ margin: 0 ;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#header{
-  background-color:#2c3e50;
-  color: white;
-  width: auto;
+ 
 }
 #article{
-  display: grid;
-  grid-template-columns: 50% 50%;
-  margin: 0;
-  
-}
-#image{
-  width: auto;
-  height: auto;
-  text-align: right;
-}
-img{
-border-radius: 10%;
-width: 100%;
-max-width: 800px;
-
-}
-#columnInput{
-  text-align: left;
-  width: auto;
-  
+background-color: turquoise;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0 10px 0 10px;
+height: 760px;
+overflow:auto; 
 }
 #containerInput{
-  margin: 30% 10% 10% 10%;
-}
-#footer{
-  background-color: gray;
-  padding: 20px;
-  color: white;
+  background-color: white;
+  padding: 40px 10px 40px 10px;
+  border-radius: 20px;
   width: 100%;
+  max-width: 600px;
+
 }
 button{
 height: 35px;
 width: 100px;
-background-color: thistle;
-border-radius: 30px;
-}
-h2 ,h6 ,h3{
-  background-color: chartreuse;
-}
-
-@media screen and (max-width: 600px) {
-#containerInput{
-  margin: 0;
-}
-
+background-color: turquoise;
+border-radius: 10px;
+border: none;
+outline:none;
 }
 </style>
